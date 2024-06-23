@@ -6,6 +6,7 @@ window.onload = async function() {
     document.body.setAttribute("data-theme", "purple")
 
     const divToRemove = document.querySelector('.masonry__item.masonry__item--span70.card.animate--appear');
+    const divToRemove2 = document.querySelector('.badge.badge--blm.ng-star-inserted');
     
     if (divToRemove) {
         // Remove the div from the DOM
@@ -13,5 +14,14 @@ window.onload = async function() {
       } else {
         console.log('Div not found');
       }
+
+
+    if (divToRemove2) {
+        // Remove the div from the DOM
+        divToRemove2.parentNode.removeChild(divToRemove2);
+      } else {
+        console.log('Div not found');
+      }
+
     console.log('executed')
 };
