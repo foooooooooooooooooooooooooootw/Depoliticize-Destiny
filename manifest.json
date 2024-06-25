@@ -2,9 +2,11 @@
   "manifest_version": 3,
   "name": "Depoliticize Destiny",
   "description": "I hate politics in media so much I learnt how to make a chrome extension",
-  "version": "1.0",
-  "action": {
+  "version": "1.2",
+  "background": {
   },
+
+  "action": {},
 
   "content_scripts":
   [
@@ -13,9 +15,10 @@
       "js": ["dd.js"],
       "matches": [
         "https://trials.report/",
-        "https://trials.report/*"
+        "https://trials.report/report/*"
       ]
       
     }
   ]
+
 }
