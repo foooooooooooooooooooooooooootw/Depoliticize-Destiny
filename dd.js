@@ -1,8 +1,10 @@
-window.navigation.addEventListener("navigate", async (event) => {
-
+window.navigation.addEventListener("navigate", () => {
   console.log(document.body.getAttribute("data-theme"))
   //The default theme's name has changed to "default" but purple works for some reason, so it'll stay as it is in case they decide to change the default to something else.
   document.body.setAttribute("data-theme", "purple")
+  const divToRemove = document.querySelector('.masonry__item.masonry__item--span70.card.animate--appear.ng-tns-c720736328-4');
+  const checkInterval = setInterval(checkForDiv, 100);
+
 
   // Define the class names you want to detect
   const targetClassNames = ['badge--blm'];
@@ -23,25 +25,34 @@ window.navigation.addEventListener("navigate", async (event) => {
       });
     });
   };
-
-  function checkForDiv() {
-    const divToRemove = document.querySelector('.masonry__item.masonry__item--span70.card.animate--appear.ng-tns-c720736328-4');
-    if(divToRemove) {
-      console.log('div found')
-      // Div found, delete it
-      divToRemove.remove();
-      clearInterval(checkInterval);
-      console.log('cancelling interval checks')
-    }
-  }
   
-  // Check for the div every 100 milliseconds
-  const checkInterval = setInterval(checkForDiv, 100);
 
   // Create a MutationObserver instance
   const observer = new MutationObserver(handleMutation);
 
   // Start observing the target element for mutations
   observer.observe(document.body, { childList: true, subtree: true });
+
   }
+
 )
+
+function checkForDiv() {
+  const divToRemove = document.querySelector('.masonry__item.masonry__item--span70.card.animate--appear.ng-tns-c720736328-4');
+  if(divToRemove) {
+    console.log('div found')
+    // Div found, delete it
+    divToRemove.remove();
+    clearInterval(checkInterval);
+    console.log('cancelling interval checks')
+  }
+}
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === 'restartContentScript') {
+    console.log("restart message received")
+    document.querySelectorAll('.masonry__item--span70').forEach(e => e.remove());
+    }
+})
+
+
