@@ -21,7 +21,7 @@
  <p>For the foreseeable future I will be adding support for more websites if and when they show up, while continuing updates if there are changes. </p>
 
 ## Support
-<p>The extension can be used with various chromium derivative browsers. For ungoogled chromium & opera, it's pretty straightforward with minimal configuration. You can click the button above and it should install fine. Ungoogled requires your "#extension-mime-request-handling" should be set to "Always prompt for install" under chrome://flags. For Opera, just click the pop-up, and then "install" for the extension. For edge & chrome, however, since the browser only accepts extensions from official stores, you will need to download & extract the zip, enable developer mode then "load unpacked" on the extracted folder.</p>
+<p>The extension can be used with various chromium derivative browsers. For ungoogled chromium & opera, it's pretty straightforward with minimal configuration. You can click the button above and it should install fine. Ungoogled requires your "#extension-mime-request-handling" should be set to "Always prompt for install" under chrome://flags. For Opera, just click the pop-up, and then "install" for the extension. For edge & chrome, however, since the browser only accepts extensions from official stores, you will need to download & extract <a href="https://github.com/foooooooooooooooooooooooooootw/Depoliticize-Destiny/releases/latest/download/Depoliticize-Destiny.zip">the zip</a>, enable developer mode then "load unpacked" on the extracted folder.</p>
 
 <p>Tested & working on:</p>
 <ul>
