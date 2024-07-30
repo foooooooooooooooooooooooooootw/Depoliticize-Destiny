@@ -12,7 +12,7 @@
 <p>To use the install button above, read the "support" section below. </p>
 
  ## Why?
- <p>The most toxic gamemodes with the most toxic, cheater filled community should not concern or associate itself with political issues.</p>
+ <p>The most toxic, cheater filled community should not be associated with political issues.</p>
 
  ## How?
  <p>I forced myself to learn javascript to hack together this extension. Being my first js project, I tried the best I could to optimize it. At the current moment the main content script is less than 60 LoC including comments and debug console logs (after many rewrites). Don't worry, I don't know enough about js right now to make a crypto miner in your web browser - not that I would. This extension does not block things from loading network-wise, it only removes it from your view.</p>
