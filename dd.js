@@ -1,10 +1,26 @@
 window.navigation.addEventListener("navigate", () => {
-  console.log(document.body.getAttribute("data-theme"))
-  //The default theme's name has changed to "default" but purple works for some reason, so it'll stay as it is in case they decide to change the default to something else.
-  document.body.setAttribute("data-theme", "purple")
-  const divToRemove = document.querySelector('.masonry__item.masonry__item--span70.card.animate--appear.ng-tns-c720736328-4');
+  console.log(document.body.getAttribute("data-theme"));
+
+  // Update the theme attribute
+  document.body.setAttribute("data-theme", "purple");
+
+  // Interval to periodically check for the div and remove it
   const checkInterval = setInterval(checkForDiv, 100);
 
+  function checkForDiv() {
+    const divToRemove = document.querySelectorAll('.masonry__item');
+
+    divToRemove.forEach(item => {
+      // Check if the item contains the additional classes we are interested in
+      if (item.classList.contains('masonry__item--span70') && 
+          item.classList.contains('card') &&
+          item.classList.contains('animate--appear')) {
+        // Remove the item from the DOM
+        item.remove();
+        clearInterval(checkInterval); // Stop the interval once the item is removed
+      }
+    });
+  }
 
   // Define the class names you want to detect
   const targetClassNames = ['badge--blm'];
@@ -16,43 +32,27 @@ window.navigation.addEventListener("navigate", () => {
 
   // Callback function to handle mutations
   const handleMutation = (mutationsList) => {
-    mutationsList.forEach((mutation) => {
+    mutationsList.forEach(mutation => {
       mutation.addedNodes.forEach(node => {
         if (node.nodeType === 1 && hasTargetClassName(node)) {
           node.remove();
-          console.log('Node deleted')
+          console.log('Node deleted');
         }
       });
     });
   };
-  
 
   // Create a MutationObserver instance
   const observer = new MutationObserver(handleMutation);
 
-  // Start observing the target element for mutations
+  // Start observing the body for mutations
   observer.observe(document.body, { childList: true, subtree: true });
+});
 
-  }
-
-)
-
-function checkForDiv() {
-  const divToRemove = document.querySelector('.masonry__item.masonry__item--span70.card.animate--appear.ng-tns-c720736328-4');
-  if(divToRemove) {
-    console.log('div found')
-    // Div found, delete it
-    divToRemove.remove();
-    clearInterval(checkInterval);
-    console.log('cancelling interval checks')
-  }
-}
-
+// Listen for messages from the background script
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === 'restartContentScript') {
-    console.log("restart message received")
+    console.log("Restart message received");
     document.querySelectorAll('.masonry__item--span70').forEach(e => e.remove());
-    }
-})
-
-
+  }
+});
